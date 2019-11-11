@@ -1,24 +1,24 @@
 // increment
-function incrementPostLikes(postId) {
+export function incrementPostLikes(postCode) {
   return {
     type: 'INCREMENT_POST_LIKES',
-    postId
+    postCode
   }
 }
 
-function addCommentOnPost(postId, authorName, comment) {
+export function addCommentOnPost(postCode, authorName, comment) {
   return {
     type: 'ADD_COMMENT',
-    postId,
+    postCode,
     authorName,
     comment
   }
 }
 
-function removeCommentFromPost(postId, commentIndex) {
+export function removeCommentFromPost(postCode, i) {
   return {
     type: 'REMOVE_COMMENT',
-    postId,
-    commentIndex
+    postCode,
+    i
   }
 }
