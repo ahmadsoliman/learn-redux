@@ -1,23 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { useParams } from 'react-router-dom';
+import { withRouter } from 'react-router';
 
 import Photo from './Photo';
 import Comments from './Comments';
 
-const Single = React.createClass({
+class Single extends React.Component {
   render() {
-    const postCode = this.props.params.postCode;
+    const postCode = this.props.match.params.postCode;
     const post = this.props.posts.find((post) => post.code === postCode);
+
     const comments = this.props.comments[postCode] || [];
 
     return (
       <div className="single-photo">
         <Photo {...this.props} post={post}/>
 
-        <Comments {...this.props} comments={comments} />
+        <Comments {...this.props} postCode={postCode} comments={comments} />
       </div>
     );
   }
-});
+};
 
-export default Single;
+export default withRouter(Single);

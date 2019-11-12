@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
-const Photo = React.createClass({
+class Photo extends React.Component {
   render() {
     const { post, comments } = this.props;
     return (
       <figure className="grid-figure">
         <div className="grid-photo-wrap">
-          <Link to={'/view/' + post.code}>
+          <Link to={`/view/${post.code}`}>
             <img src={post.display_src} alt={post.caption}
               className='grid-photo' />
           </Link>
@@ -36,6 +36,6 @@ const Photo = React.createClass({
       </figure>
     );
   }
-});
+};
 
 export default Photo;

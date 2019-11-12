@@ -1,9 +1,9 @@
-import { createStore, compose } from 'redux';
-import { syncHistoryWithStore } from 'react-router-redux';
-import { browserHistory } from 'react-router';
+import { applyMiddleware, createStore, compose } from 'redux';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router'
 
 // root reducer
-import rootReducer from './reducers/index';
+import createRootReducer from './reducers/index';
 
 // data
 
@@ -16,8 +16,17 @@ const defaultState = {
   comments
 }
 
-const store = createStore(rootReducer, defaultState);
+export const history = createBrowserHistory();
 
-export const history = syncHistoryWithStore(browserHistory, store);
+const store = createStore(
+  createRootReducer(history),
+  defaultState,
+  compose(
+    applyMiddleware(
+      routerMiddleware(history), // for dispatching history actions
+      // ... other middlewares ...
+    )
+  )
+);
 
 export default store;
