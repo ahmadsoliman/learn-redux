@@ -10,13 +10,13 @@ import createRootReducer from './reducers/index';
 import comments from './data/comments';
 import posts from './data/posts';
 
+export const history = createBrowserHistory();
+
 // create default data
 const defaultState = {
   posts,
   comments
 }
-
-export const history = createBrowserHistory();
 
 const store = createStore(
   createRootReducer(history),

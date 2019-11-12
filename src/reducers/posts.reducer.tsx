@@ -1,4 +1,4 @@
-function posts(state = [], action) {
+function posts(state: any[] = [], action: any) {
   switch(action.type) {
     case 'INCREMENT_POST_LIKES':
       const i = state.findIndex((post) => post.code === action.postCode);

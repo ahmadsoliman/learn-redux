@@ -1,4 +1,4 @@
-function postComment(state = [], action) {
+function postComment(state = [], action: any) {
   return [
     ...state,
     {
@@ -8,14 +8,14 @@ function postComment(state = [], action) {
   ];
 }
 
-function deleteComment(state = [], action) {
+function deleteComment(state: any = [], action: any) {
   return [
     ...state.slice(0, action.i),
     ...state.slice(action.i+1)
   ];
 }
 
-function comments(state = [], action) {
+function comments(state: any = {}, action: any) {
   if (typeof action.postCode !== undefined) {
     switch (action.type) {
       case 'ADD_COMMENT':
@@ -31,6 +31,7 @@ function comments(state = [], action) {
       default: return state;
     }
   }
+  return state;
 }
 
 export default comments;

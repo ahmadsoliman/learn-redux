@@ -4,7 +4,7 @@ import { Link, Switch, Route } from 'react-router-dom';
 import PhotoGrid from './PhotoGrid';
 import Single from './Single';
 
-class Main extends React.Component {
+class Main extends React.Component<any, any> {
   render() {
     return (
       <div>

@@ -1,16 +1,15 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import { withRouter } from 'react-router';
 
 import Photo from './Photo';
 import Comments from './Comments';
 
-class Single extends React.Component {
+class Single extends React.Component<any, any> {
   render() {
-    const postCode = this.props.match.params.postCode;
-    const post = this.props.posts.find((post) => post.code === postCode);
+    const postCode = (this.props as any).match.params.postCode;
+    const post = (this.props as any).posts.find((post: any) => post.code === postCode);
 
-    const comments = this.props.comments[postCode] || [];
+    const comments = (this.props as any).comments[postCode] || [];
 
     return (
       <div className="single-photo">
@@ -22,4 +21,4 @@ class Single extends React.Component {
   }
 };
 
-export default withRouter(Single);
+export default withRouter(Single as any);
