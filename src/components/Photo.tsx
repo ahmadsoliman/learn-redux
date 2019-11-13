@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
+import { PhotoProps } from '../types/photo.type';
 
-class Photo extends React.Component<any, any> {
+class Photo extends React.Component<PhotoProps> {
   render() {
-    const { post, comments } = this.props as any;
+    const { post, comments, incrementPostLikes } = this.props;
     return (
       <figure className="grid-figure">
         <div className="grid-photo-wrap">
           <Link to={`/view/${post.code}`}>
-            <img src={post.display_src} alt={post.caption}
-              className='grid-photo' />
+            <img src={post.display_src} alt={post.caption} className='grid-photo' />
           </Link>
 
           <CSSTransitionGroup transitionName="like" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
@@ -21,13 +21,13 @@ class Photo extends React.Component<any, any> {
         <figcaption>
           <p>{post.caption}</p>
           <div className="control-buttons">
-            <button onClick={(this.props as any).incrementPostLikes.bind(null, post.code)} className="likes">
+            <button onClick={() => incrementPostLikes(post.code)} className="likes">
               &hearts; {post.likes}
             </button>
             <Link className="button" to={`/view/${post.code}`}>
               <span className="comment-count">
-                <span className="speech-bubble"></span>
-                {comments[post.code] ? comments[post.code].length : 0}
+                <span className="speech-bubble" />
+                {comments ? comments.length : 0}
               </span>
             </Link>
           </div>

@@ -1,4 +1,6 @@
-function posts(state: any[] = [], action: any) {
+import { Post } from "../models";
+
+function posts(state: Post[] = [], action: any) {
   switch(action.type) {
     case 'INCREMENT_POST_LIKES':
       const i = state.findIndex((post) => post.code === action.postCode);

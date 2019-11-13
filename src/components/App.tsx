@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 
 import Main from './Main';
+import { AppStore } from '../types/redux.type';
 
-function mapStateToProps(state: { posts: any[], comments: any[] }) {
+function mapStateToProps(state: AppStore) {
   return {
     posts: state.posts,
     comments: state.comments

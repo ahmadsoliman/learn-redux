@@ -1,4 +1,8 @@
-function postComment(state = [], action: any) {
+import { AllComments, PostComment } from "../models";
+import { AppActions, AddCommentOnPost, RemoveCommentFromPost } from "../types/actions.type";
+import { ADD_COMMENT, REMOVE_COMMENT } from "../constants";
+
+function postComment(state: PostComment[] = [], action: AddCommentOnPost) {
   return [
     ...state,
     {
@@ -8,22 +12,22 @@ function postComment(state = [], action: any) {
   ];
 }
 
-function deleteComment(state: any = [], action: any) {
+function deleteComment(state: PostComment[] = [], action: RemoveCommentFromPost) {
   return [
     ...state.slice(0, action.i),
     ...state.slice(action.i+1)
   ];
 }
 
-function comments(state: any = {}, action: any) {
+function comments(state: AllComments = {}, action: AppActions): AllComments {
   if (typeof action.postCode !== undefined) {
     switch (action.type) {
-      case 'ADD_COMMENT':
+      case ADD_COMMENT:
         return {
           ...state,
           [action.postCode]: postComment(state[action.postCode], action)
         }
-      case 'REMOVE_COMMENT':
+      case REMOVE_COMMENT:
         return {
           ...state,
           [action.postCode]: deleteComment(state[action.postCode], action)

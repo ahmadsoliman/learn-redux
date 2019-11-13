@@ -1,0 +1,8 @@
+export const INCREMENT_POST_LIKES = 'INCREMENT_POST_LIKES';
+export type INCREMENT_POST_LIKES = typeof INCREMENT_POST_LIKES;
+
+export const ADD_COMMENT = 'ADD_COMMENT';
+export type ADD_COMMENT = typeof ADD_COMMENT;
+
+export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export type REMOVE_COMMENT = typeof REMOVE_COMMENT;

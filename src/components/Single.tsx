@@ -3,22 +3,24 @@ import { withRouter } from 'react-router';
 
 import Photo from './Photo';
 import Comments from './Comments';
+import { SingleProps } from '../types';
+import { Post } from '../models';
 
-class Single extends React.Component<any, any> {
+class Single extends React.Component<SingleProps> {
   render() {
-    const postCode = (this.props as any).match.params.postCode;
-    const post = (this.props as any).posts.find((post: any) => post.code === postCode);
+    const postCode = this.props.match.params.postCode;
+    const post = this.props.posts.find((post: Post) => post.code === postCode) || Post.createNew();
 
-    const comments = (this.props as any).comments[postCode] || [];
+    const comments = this.props.comments[postCode] || [];
 
     return (
       <div className="single-photo">
-        <Photo {...this.props} post={post}/>
+        <Photo post={post} comments={comments} incrementPostLikes={this.props.incrementPostLikes} />
 
-        <Comments {...this.props} postCode={postCode} comments={comments} />
+        <Comments addCommentOnPost={this.props.addCommentOnPost} removeCommentFromPost={this.props.removeCommentFromPost} postCode={postCode} comments={comments} />
       </div>
     );
   }
 };
 
-export default withRouter(Single as any);
+export default withRouter(Single);

@@ -9,11 +9,12 @@ import createRootReducer from './reducers/index';
 
 import comments from './data/comments';
 import posts from './data/posts';
+import { AppStore } from './types';
 
 export const history = createBrowserHistory();
 
 // create default data
-const defaultState = {
+const defaultState: AppStore = {
   posts,
   comments
 }
